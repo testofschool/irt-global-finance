@@ -1,0 +1,39 @@
+\begin{thebibliography}{5}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Carhart(1997)]{carhart1997persistence}
+Mark~M Carhart.
+\newblock On persistence in mutual fund performance.
+\newblock \emph{The Journal of Finance}, 52\penalty0 (1):\penalty0 57--82,
+  1997.
+
+\bibitem[Fama and French(1993)]{fama1993common}
+Eugene~F Fama and Kenneth~R French.
+\newblock Common risk factors in the returns on stocks and bonds.
+\newblock \emph{Journal of Financial Economics}, 33\penalty0 (1):\penalty0
+  3--56, 1993.
+
+\bibitem[Jensen(1968)]{jensen1968}
+Michael~C Jensen.
+\newblock The performance of mutual funds in the period 1945--1964.
+\newblock \emph{The Journal of Finance}, 23\penalty0 (2):\penalty0 389--416,
+  1968.
+
+\bibitem[Kang(2026)]{kang2026efsl}
+Jung~Min Kang.
+\newblock The scaling law of evaluation failure: Why simple averaging collapses
+  under data sparsity and item difficulty gaps, and how item response theory
+  recovers ground truth across domains.
+\newblock \emph{arXiv preprint arXiv:2605.11205}, 2026.
+
+\bibitem[Sharpe(1966)]{sharpe1966}
+William~F Sharpe.
+\newblock Mutual fund performance.
+\newblock \emph{The Journal of Business}, 39\penalty0 (1):\penalty0 119--138,
+  1966.
+
+\end{thebibliography}

@@ -1,0 +1,9 @@
+{
+  "source": "Yahoo Finance via yfinance",
+  "sample": "2008-04 to 2026-04",
+  "benchmark": "ACWI",
+  "binary_rule": "1 if fund > ACWI in month",
+  "n_funds": 50,
+  "n_periods": 217,
+  "note": "Derived artifacts for offline reproduction"
+}

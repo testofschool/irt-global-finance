@@ -1,0 +1,18 @@
+{
+  "model": "1PL Rasch refit",
+  "sparsity_levels": [
+    0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "irt_wins": 7,
+  "total": 10,
+  "note": "Canonical results from experiment.py with 5 bootstraps per level"
+}

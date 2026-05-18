@@ -1,0 +1,112 @@
+{
+  "sample_start": "2008-04-01",
+  "benchmark": "ACWI (no SPY fallback after 2008-04)",
+  "n_funds": 50,
+  "n_items": 217,
+  "sparsity": 0.05686635944700458,
+  "irt_converged": true,
+  "irt_iters": 740,
+  "irt_centering": "post-optimization: mean(theta)=0, mean(b)=0",
+  "rho_sp": 0.5734125992462948,
+  "tau": 0.40216062190632484,
+  "max_abs_delta": 30.0,
+  "lltm_r2": 0.07594751563079882,
+  "lltm_rho": 0.27558696150739753,
+  "lltm_cv_mean": -0.04770315996580783,
+  "lltm_cv_std": 0.19045759907804563,
+  "pca_pc1": 0.5924927077090982,
+  "pca_top3": 0.7088085508601192,
+  "pcr_r2": 0.10427671788731652,
+  "crisis_b_mean": -0.7102820533817028,
+  "normal_b_mean": 0.14127156862840498,
+  "crisis_p_mw": 0.0007052306621815389,
+  "crisis_p_block": 0.055,
+  "r_beat_b": -0.7330136559046663,
+  "stress_model": "1PL Rasch (documented)",
+  "stress_irt_wins": 7,
+  "stress_total": 10,
+  "region_stats": {
+    "US": {
+      "n": 23,
+      "avg_theta": 0.2353224994664025,
+      "avg_abs_delta": 8.76086956521739
+    },
+    "EU": {
+      "n": 9,
+      "avg_theta": -0.24112735659214657,
+      "avg_abs_delta": 14.944444444444445
+    },
+    "Asia": {
+      "n": 7,
+      "avg_theta": -0.17117850205634294,
+      "avg_abs_delta": 7.357142857142857
+    },
+    "EM": {
+      "n": 8,
+      "avg_theta": -0.2145992391081297,
+      "avg_abs_delta": 9.8125
+    },
+    "Glb": {
+      "n": 3,
+      "avg_theta": -0.10907595037949869,
+      "avg_abs_delta": 4.666666666666667
+    }
+  },
+  "lltm_weights": {
+    "acwi_return": 0.25120149405626035,
+    "credit_spread": -0.22433138628643484,
+    "is_crisis": -0.1786358714758318,
+    "dispersion": -0.16482484737422023,
+    "vix_avg": 0.0558614232129435
+  },
+  "top12_movers": {
+    "EWI": {
+      "name": "Italy",
+      "delta": -30.0
+    },
+    "TLT": {
+      "name": "Long Bonds",
+      "delta": 30.0
+    },
+    "EWP": {
+      "name": "Spain",
+      "delta": -29.0
+    },
+    "HYG": {
+      "name": "High Yield",
+      "delta": 28.0
+    },
+    "XLRE": {
+      "name": "Real Est.",
+      "delta": 27.0
+    },
+    "LQD": {
+      "name": "Inv.Grade",
+      "delta": 24.5
+    },
+    "EZA": {
+      "name": "S. Africa",
+      "delta": -23.0
+    },
+    "TIP": {
+      "name": "TIPS",
+      "delta": 21.5
+    },
+    "EWQ": {
+      "name": "France",
+      "delta": -21.0
+    },
+    "MCHI": {
+      "name": "China",
+      "delta": 20.0
+    },
+    "EWJ": {
+      "name": "Japan",
+      "delta": 18.5
+    },
+    "EWW": {
+      "name": "Mexico",
+      "delta": -16.5
+    }
+  }
+}
