@@ -26,7 +26,7 @@
 \maketitle
 
 \begin{abstract}
-We apply the Evaluation Failure Scaling Law (EFSL) framework to global fund performance assessment, showing that simple averaging of binary monthly outperformance can produce substantial model-implied ranking distortions under regime-dependent period difficulty. Using a 2-parameter logistic Item Response Theory (IRT) model on 50 exchange-traded funds across 217 monthly periods (April 2008 to April 2026), we find that IRT corrections shift fund rankings by up to $\pm$30 positions (Spearman $\rho = 0.573$). Crisis periods exhibit lower IRT difficulty than normal periods (month-level Mann--Whitney $p = 0.001$; contiguous-block permutation $p = 0.055$), consistent with the interpretation that market downturns are easier periods for relative outperformance. The Linear Logistic Test Model provides an exploratory decomposition of period difficulty, though cross-validated performance is weak ($R^2_{\text{CV}} < 0$). Principal Component Regression indicates a dominant common return component (PC1 = 59.2\%). A sparsity stress test using a 1PL Rasch refit shows the 1PL IRT refit outperforms simple averaging at 7 of 10 tested sparsity levels, although both methods degrade under high artificial sparsity. This provides an additional cross-domain application of the EFSL framework.
+We apply the Evaluation Failure Scaling Law (EFSL) framework to global fund performance assessment, showing that simple averaging of binary monthly outperformance can produce substantial model-implied ranking distortions under regime-dependent period difficulty. Using a 2-parameter logistic Item Response Theory (IRT) model on 50 exchange-traded funds across 217 monthly periods (April 2008 to April 2026), we find that IRT corrections shift fund rankings by up to $\pm$30 positions (Spearman $\rho = 0.573$). Crisis periods exhibit lower IRT difficulty than normal periods (month-level Mann--Whitney $p = 0.001$; contiguous-block permutation $p = 0.055$), consistent with the interpretation that market downturns are easier periods for relative outperformance. The Linear Logistic Test Model provides an exploratory decomposition of period difficulty, though cross-validated performance is weak ($R^2_{\text{CV}} < 0$). Principal Component Regression indicates a dominant common return component (PC1 = 59.2\%). A sparsity stress test with a 1PL Rasch refit compares rankings under artificial masking against the full-data 2PL ranking, which is itself an IRT estimate rather than an external ground truth. The canonical run recorded the 1PL refit ahead of simple averaging at 7 of 10 sparsity levels (0--90\%, including the unmasked level), but its per-level values were not committed; an offline refit gives 6 of 10, with IRT advantages of $+0.003$ to $+0.014$ in Spearman $\rho$ and losses at 50\%, 70\%, 80\%, and 90\% sparsity (down to $-0.041$ at 90\%). This provides an additional cross-domain application of the EFSL framework.
 
 \medskip\noindent\textbf{Keywords:} Item Response Theory, Fund Evaluation, Market Regimes, EFSL
 \end{abstract}
@@ -55,9 +55,9 @@ Daily adjusted closing prices for 50 U.S.-listed ETFs and the MSCI ACWI ETF benc
 \midrule
 US Broad \& Growth   & 7  & SPY, QQQ, IWM, DIA, ARKK, VTI, VOO \\
 US Sectors           & 11 & XLK, XLF, XLE, XLV, XLRE, SMH, XLU, XLI, XLP, XLB, XLC \\
-Europe               & 9  & EWG, EWU, EWQ, EWI, EWP, EWL, EWN \\
+Europe               & 9  & EWG, EWU, EWQ, EWI, EWP, EWL, EWN, EWD, EWK \\
 Asia-Pacific         & 7  & EWJ, EWY, EWA, EWT, EWS, EWH, MCHI \\
-Emerging Markets     & 8  & EEM, EWZ, INDA, EWW, TUR, EZA \\
+Emerging Markets     & 8  & EEM, EWZ, INDA, EWW, TUR, EZA, ECH, EPOL \\
 Commodities/Crypto   & 3  & GLD, SLV, IBIT \\
 Fixed Income/REITs   & 5  & TLT, HYG, LQD, TIP, VNQ \\
 \midrule
@@ -96,7 +96,7 @@ The 2PL model converges in 740 iterations. Spearman $\rho = 0.573$ ($p < 10^{-4}
 
 Fixed-income funds are the most upgraded: long-term bonds (TLT) shift $+$30 positions, high-yield bonds (HYG) $+$28, and investment-grade bonds (LQD) $+$24.5. European equities receive the largest downgrades: Italy (EWI) shifts $-$30, Spain (EWP) $-$29 (Figure~\ref{fig:rank}).
 
-Regional corrections are systematic: US funds receive moderate corrections (mean $|\Delta| = 8.8$, $n = 23$), European funds the largest (mean $|\Delta| = 14.9$, $n = 9$), followed by emerging markets ($9.8$, $n = 8$) and Asia-Pacific ($7.4$, $n = 7$).
+Regional corrections are systematic: US-region funds (incl.\ bonds/REITs) receive moderate corrections (mean $|\Delta| = 8.8$, $n = 23$), European funds the largest (mean $|\Delta| = 14.9$, $n = 9$), followed by emerging markets ($9.8$, $n = 8$) and Asia-Pacific ($7.4$, $n = 7$).
 
 \begin{figure}[H]
 \centering
@@ -142,18 +142,18 @@ PC1 explains 59.2\% of variance, consistent with a dominant common return compon
 
 \subsection{Sparsity Stress Test}
 
-Using a 1PL Rasch model refit for computational stability, IRT outperforms simple averaging at 7 of 10 sparsity levels (Figure~\ref{fig:stress}). We note that the stress-test refit uses a simpler model than the main 2PL analysis; the 1PL omits discrimination parameters, providing a lower-capacity robustness check rather than an exact replication of the main 2PL estimator.
+We randomly mask a fraction $s \in \{0, 0.1, \dots, 0.9\}$ of the observed entries, refit a 1PL Rasch model for computational stability, and compare the Spearman $\rho$ of the 1PL and simple-average rankings against the full-data 2PL ranking. This reference ranking is the main IRT estimate, not an external ground truth, so the test measures agreement with the full-data IRT solution; the $s = 0$ level applies no masking and is counted as one of the 10 levels. The canonical run (\texttt{experiment.py}: 5 masking replicates per level, L-BFGS-B \texttt{maxiter} 300) recorded the 1PL refit ahead at 7 of 10 levels (Figure~\ref{fig:stress}); only this count, not the per-level values, is committed as data (\nolinkurl{data/canonical_stress.json}). An offline refit (\nolinkurl{reproduce_from_derived.py} \texttt{-{}-stress-refit}: 2 masking replicates per level, \texttt{maxiter} 200; per-level values in \nolinkurl{data/stress_refit_levels.csv}) gives 6 of 10: the 1PL refit leads by $+0.003$ to $+0.014$ at $s = 0$--$0.4$ and $s = 0.6$, and trails at $s = 0.5$ ($-0.002$), $0.7$ ($-0.002$), $0.8$ ($-0.017$), and $0.9$ ($-0.041$). IRT therefore loses at high sparsity in the offline refit. We note that the stress-test refit uses a simpler model than the main 2PL analysis; the 1PL omits discrimination parameters, providing a lower-capacity robustness check rather than an exact replication of the main 2PL estimator.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.85\textwidth]{figures/fig5_stress_test.pdf}
-\caption{Sparsity stress test using 1PL Rasch refit. IRT wins at 7/10 levels.}
+\caption{Sparsity stress test using 1PL Rasch refit, canonical run (recorded as 7/10 IRT wins; per-level values not committed as data). Reference ranking: full-data 2PL estimate. The offline refit (6/10; \nolinkurl{data/stress_refit_levels.csv}) is reported in the text.}
 \label{fig:stress}
 \end{figure}
 
 \subsection{Regional Analysis}
 
-European funds receive the largest corrections (mean $|\Delta| = 14.9$), followed by emerging markets ($9.8$). Asia-Pacific ($7.4$) and global/commodity funds ($4.7$) receive smaller corrections than US funds ($8.8$) (Figure~\ref{fig:regions}).
+European funds receive the largest corrections (mean $|\Delta| = 14.9$), followed by emerging markets ($9.8$). Asia-Pacific ($7.4$) and global/commodity funds ($4.7$) receive smaller corrections than US-region funds (incl.\ bonds/REITs; $8.8$) (Figure~\ref{fig:regions}).
 
 \begin{figure}[H]
 \centering
@@ -172,7 +172,7 @@ European funds receive the largest corrections (mean $|\Delta| = 14.9$), followe
 
 \section{Conclusion}
 
-IRT rank corrections of $\pm$30 positions among 50 global ETFs suggest that regime-dependent evaluation effects can materially alter fund rankings. Crisis periods are consistent with being easier for relative outperformance (block permutation $p = 0.055$). The sparsity stress test (1PL) supports IRT's advantage at 7/10 levels. This provides an additional cross-domain application of the EFSL framework.
+IRT rank corrections of $\pm$30 positions among 50 global ETFs suggest that regime-dependent evaluation effects can materially alter fund rankings. Crisis periods are consistent with being easier for relative outperformance (block permutation $p = 0.055$). In the sparsity stress test (1PL, scored against the full-data IRT ranking), the canonical run recorded IRT ahead at 7/10 levels without committed per-level values, while an offline refit gives 6/10 with margins of at most $+0.014$ and losses at high sparsity (down to $-0.041$ at 90\%). This provides an additional cross-domain application of the EFSL framework.
 
 Code and reproduction artifacts are provided in the accompanying source package.
 
